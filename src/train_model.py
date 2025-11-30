@@ -6,7 +6,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier
 import joblib
 
-df=pd.read_csv("data\IMLP4_13-product_reviews_full.csv")
+df=pd.read_csv("data/IMLP4_13-product_reviews_full.csv")
 
 df=df.dropna()
 
@@ -26,8 +26,8 @@ preprocessor=ColumnTransformer(transformers=[('title',TfidfVectorizer(),'review_
                   ('text',TfidfVectorizer(),'review_text'),
                   ('length',MinMaxScaler(),['review_length'])])
 
-pipeline=Pipeline(("preprocessing",preprocessor),
-                  ("classifier",RandomForestClassifier))
+pipeline=Pipeline([("preprocessing",preprocessor),
+                  ("classifier",RandomForestClassifier())])
 
 pipeline.fit(x,y)
 
